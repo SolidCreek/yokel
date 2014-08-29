@@ -1,0 +1,26 @@
+<div class="users-view" ng-model="UserController">
+  <div class="user-side-infoBar">
+    <div class="user-followers">
+      <span>{{user.follower}}</span>
+    </div>
+    <div class="user-following">
+      <span>{{user.following}}</span>
+    </div>
+    <div class="user-reviews">
+      <span>{{user.reviews}}</span>
+    </div>
+    <div class="user-info">
+      <span>{{user.info}}</span>
+    </div>
+  </div>
+  <div class="user-output">
+    <div class="user-vanity">
+      <img class="user-image" src="{{user.image}}">
+      <p class="user-clout-score">Clout Score is: {{user.cloutScore}}</p>
+    </div>
+    <div class="user-activity">
+    <span ng-if="user.noActivity" class="user-noActivity">{{user.noActivity.message}}</span>
+      {{user.activity}}
+    </div>
+  </div>
+</div>
