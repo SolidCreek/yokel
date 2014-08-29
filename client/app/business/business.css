@@ -1,0 +1,25 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+div{
+    border:1px solid black;
+    margin: 30px;
+}
+.info{
+    float:left;
+    width:40%;
+    height: 300px;
+}
+.map{
+    float:right;
+    width:40%;
+    height: 300px;
+}
+.reviews{
+    clear:both;
+    width: 96%;
+    height: 300px;
+}
