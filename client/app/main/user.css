@@ -1,0 +1,53 @@
+.users-view{
+    color: blue;
+    height: 20px;
+    width: 20px;
+}
+
+.user-side-infoBar{
+    color: red;
+    height: 20px;
+    width: 20px;
+}
+
+.user-followers{
+    color: yellow;
+    height: 20px;
+    width: 20px;
+}
+   
+.user-following{
+    color: green;
+    height: 20px;
+    width: 20px;
+}
+    
+.user-reviews{
+    color: cyan;
+    height: 20px;
+    width: 20px;
+}
+    
+.user-info{
+    color: magenta;
+    height: 20px;
+    width: 20px;
+}
+      
+.user-vanity{
+    color: orange;
+    height: 20px;
+    width: 20px;
+}
+      
+.user-clout-score{
+    color: black;
+    height: 20px;
+    width: 20px;
+}
+    
+.user-activity{
+    color: pink;
+    height: 20px;
+    width: 20px;
+}
