@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Controller: BusinessController', function () {
+describe('Controller: UserController', function () {
 
   // // load the controller's module
   // beforeEach(module('yokelApp'));

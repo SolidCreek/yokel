@@ -1,0 +1,12 @@
+<div id="home" ng-controller="HomeController">
+  <form ng-submit="search()">
+    <input type="text" placeholder="Seach for local establishments!" ng-model="clientInfo.language"></input> 
+  </form>
+  <ul>
+    <li ng-repeat="results in data.results"><span>{{results.distance}}mi</span>{{results.name}}</li>
+  </ul>
+  <!-- <div id="map_canvas" ng-controller="mapController">
+      <google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
+  </div> -->
+</div>
+

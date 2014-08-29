@@ -6,6 +6,6 @@ angular.module('yokelApp')
       .state('user', {
         url: '/user',
         templateUrl: 'app/user/user.html',
-        controller: 'UserControler'
+        controller: 'UserController'
       });
   });
