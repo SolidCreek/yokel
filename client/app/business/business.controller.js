@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yokelApp')
-  .controller('BusinessController', function ($scope, $http) {
+  .controller('BusinessController', function($scope, $http){
 
   })
 
