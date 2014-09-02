@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yokelApp')
-  .config(function ($stateProvider) {
+  .config(function($stateProvider){
     $stateProvider
       .state('business', {
         url: '/business',
