@@ -1,5 +1,20 @@
 angular.module('yokelApp')
 
+  //Routing for signin and signup
+  .config(function($stateProvider){
+    $stateProvider
+      .state('signin', {
+        url: '/signin',
+        templateUrl: 'app/user/signin.html',
+        controller: 'AuthController'
+      })
+      .state('signup', {
+        url: '/signup',
+        templateUrl: 'app/user/signup.html',
+        controller: 'AuthController'        
+      })
+  });
+
 .controller('AuthController', function($scope, Auth, $window, $location){
   $scope.user = {};
 
