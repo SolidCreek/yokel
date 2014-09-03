@@ -16,7 +16,7 @@ describe('GET /api/following', function() {
         res.body.should.be.instanceof(Array);
         done();
       });
-  }),
+  });
 
   it('should respond with JSON array of objects', function(done) {
     request(app)
@@ -25,10 +25,10 @@ describe('GET /api/following', function() {
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err) return done(err);
-        res.body[0]should.be.instanceof(Object);
+        res.body[0].should.be.instanceof(Object);
         done();
       });
-  }),
+  });
 
   it('should respond with JSON array of objects with a name field', function(done) {
     request(app)
@@ -37,10 +37,10 @@ describe('GET /api/following', function() {
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err) return done(err);
-        res.body[0].name.should.exist;
+        should.exist(res.body[0].name);
         done();
       });
-  }),
+  });
 
   it('should respond with JSON array of objects with a userId field', function(done) {
     request(app)
@@ -49,10 +49,10 @@ describe('GET /api/following', function() {
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err) return done(err);
-        res.body[0].userId.should.exist;
+        should.exist(res.body[0].userId);
         done();
       });
-  }),
+  });
 
   it('should respond with JSON array of objects with a dateFollowed field', function(done) {
     request(app)
@@ -61,10 +61,10 @@ describe('GET /api/following', function() {
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err) return done(err);
-        res.body[0].dateFollowed.should.exist;
+        should.exist(res.body[0].dateFollowed);
         done();
       });
-  }),
+  });
 
   it('should respond with JSON array of objects with a score field', function(done) {
     request(app)
@@ -73,10 +73,10 @@ describe('GET /api/following', function() {
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err) return done(err);
-        res.body[0].score.should.exist;
+        should.exist(res.body[0].score);
         done();
       });
-  }),
+  });
 
   it('should respond with JSON array of objects with a lastSeen field', function(done) {
     request(app)
@@ -85,8 +85,8 @@ describe('GET /api/following', function() {
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err) return done(err);
-        res.body[0].lastSeen.should.exist;
+        should.exist(res.body[0].lastSeen);
         done();
       });
-  }),
+  });
 });
