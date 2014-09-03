@@ -26,7 +26,7 @@ exports.index = function(req, res) {
     },
     {
       timeOfEvent: Date.now(),
-      event: 'restrauntRated',
+      event: 'restaurantRated',
       value: {resutrantId: '87t45t3', score: 88}
     },
     {
