@@ -30,10 +30,22 @@
 /**
  * App-wide Styles
  */
+.nav-bar{
+    margin: 0px;
+    border: none;
+    border-bottom: 1px solid black;
+}
 
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+.user-login-buttons{
+    display: inline;
+    margin-left: 80%;
+}
+
+#site-title{
+    display: inline;
+}
+
+.template-container{
+    margin: 0px;
+    border: none;
 }
