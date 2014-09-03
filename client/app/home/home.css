@@ -1,0 +1,19 @@
+#home{
+  border: none;
+  margin: 0px;
+}
+
+.search-form{
+  position: relative;
+  top: 20px;
+  left: 35%;
+}
+
+.search-bar{
+  width: 300px;
+}
+
+.selection-panel{
+  float: left;
+  height: 600px;
+}
