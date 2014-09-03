@@ -6,6 +6,7 @@ angular.module('yokelApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap'
+  //'google-maps'
 ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider){
     $urlRouterProvider
