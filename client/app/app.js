@@ -7,7 +7,7 @@ angular.module('yokelApp', [
   'ui.router',
   'ui.bootstrap'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $locationProvider){
     $urlRouterProvider
       .otherwise('/');
 
