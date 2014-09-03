@@ -13,7 +13,7 @@ angular.module('yokelApp')
         templateUrl: 'app/user/signup.html',
         controller: 'AuthController'        
       })
-  });
+  })
 
 .controller('AuthController', function($scope, Auth, $window, $location){
   $scope.user = {};
@@ -73,7 +73,7 @@ angular.module('yokelApp')
 
   //Removes token from local storage and redirects user to home page
   var signout = function(user){
-    $window.localStorage.removeItem("TOKEN");
+    $window.localStorage.removeItem("TOKEN NAME");
     $location.path('/');
   };
 
