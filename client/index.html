@@ -29,6 +29,10 @@
   </head>
   <body ng-app="yokelApp">
 
+    <div class="nav-bar">
+      <h1 id="site-title">Yokel</h1><div class="user-login-buttons">login/signup</div>
+    </div>
+
     <!-- Add your site or application content here -->
     <div ui-view=""></div>
 
@@ -42,6 +46,7 @@
       <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
       <!-- endbower -->
       
     <!-- endbuild -->
@@ -54,6 +59,7 @@
           <script src="app/home/home.controller.js"></script>
           <script src="app/home/home.js"></script>
           <script src="app/map.js"></script>
+          <script src="app/user/Auth.js"></script>
           <script src="app/user/user.controller.js"></script>
           <script src="app/user/user.js"></script>
           <!-- endinjector -->
