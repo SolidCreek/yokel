@@ -4,7 +4,7 @@ var Promise = require('bluebird');
 
 var neo4j= require('neo4j');
 /*remember to switch to production once we are sure everything works!*/
-var neo4jUrl = 'http://neo4jake.cloudapp.net';
+var neo4jUrl = 'http://neo4yokel.cloudapp.net';
 /********************************************************************/
 var db = new neo4j.GraphDatabase(neo4jUrl);
 var _ = require('lodash');
@@ -17,7 +17,8 @@ var User = function(node){
 
 
 //Functions to add/find/remove users
-//Primary function to instantiate new users based on facebook id/name: returns a promise with a newly created user object
+//Primary function to instantiate new users : returns a promise with a newly created user object
+//data must include facebookID, facebookToken, name, and email.
 User.createUniqueUser = function (data) {
   return new Promise(function(resolve, reject){
     if (!data.facebookID || !data.name){
@@ -26,7 +27,7 @@ User.createUniqueUser = function (data) {
 
     var query = [
       'MERGE (user:User {facebookID: {facebookID}})',
-      'SET user.name = {name}',
+      'SET user.name = {name}, user.email={email}, user.facebookToken={facebookToken}',
       'RETURN user',
     ].join('\n');
 
