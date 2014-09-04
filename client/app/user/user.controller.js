@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('yokelApp')
-  .controller('UserController', function ($scope, $http) {
+
+  .controller('UserController', function($scope, $http){
     $scope.user = {};
   })
 
