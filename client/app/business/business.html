@@ -1,7 +1,8 @@
 
 <!-- Header from index/outer view -->
-<link rel="stylesheet" href="business.css">
-<form type="text" placeholder="search"></form>
+<form ng-submit="search()">
+  <input type="text" placeholder="Seach" ng-model="searchFilter"></input> 
+</form>
 
 <div class="info">Business Info Goes Here</div>
 
