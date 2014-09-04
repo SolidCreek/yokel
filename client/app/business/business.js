@@ -9,3 +9,6 @@ angular.module('yokelApp')
         controller: 'BusinessController'
       });
   });
+
+
+  //user/business click stores respective id in local storage for rapid query

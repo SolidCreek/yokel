@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yokelApp')
-  .controller('HomeController', function ($scope, $http) {
+  .controller('HomeController', function($scope, $http){
     
   })
 
@@ -12,4 +12,8 @@ angular.module('yokelApp')
     return {
       locate: locate 
     }
+  })
+
+  .factory('pages', function(){
+    var getBusinessPage = function(){};
   });
