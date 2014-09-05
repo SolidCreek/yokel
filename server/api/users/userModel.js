@@ -19,21 +19,21 @@ var User = function(node){
 //Functions to add/find/remove users
 //Primary function to instantiate new users : returns a promise with a newly created user object
 //data must include facebookID, facebookToken, name, and email.
-User.createUniqueUser = function (data) {
+User.createUniqueUser = function(data){
   return new Promise(function(resolve, reject){
-    if (!data.facebookID || !data.name){
+    if(!data.facebookID || !data.name){
       reject('Requires facebook ID and name parameters');
     }
 
     var query = [
       'MERGE (user:User {facebookID: {facebookID}})',
       'SET user.name = {name}, user.email={email}, user.facebookToken={facebookToken}',
-      'RETURN user',
+      'RETURN user'
     ].join('\n');
 
     var params = data;
 
-    db.query(query, params, function (err, results) {
+    db.query(query, params, function(err, results){
       if(err){ 
         reject(err); 
       } else {
@@ -45,20 +45,20 @@ User.createUniqueUser = function (data) {
 
 // Find a single user in the database, requires facebookID as input
 // If user is not in database, promise will resolve to error 'user does not exist'
-User.find = function (data) {
+User.find = function(data){
   return new Promise(function(resolve, reject){
     var query = [
       'MATCH (user:User {facebookID: {facebookID}})',
-      'RETURN user',
+      'RETURN user'
     ].join('\n');
 
     var params = data;
 
-    db.query(query, params, function (err, results) {
+    db.query(query, params, function(err, results){
       if(err){ 
         reject(err);
       } else {
-        if (results && results[0] && results[0].user) {
+        if(results && results[0] && results[0].user){
           resolve(new User(results[0].user));
         } else {
           reject(new Error('user does not exist'));
@@ -71,18 +71,18 @@ User.find = function (data) {
 //Deletes user, requires facebookID as input.
 User.deleteUser = function(data){
   return new Promise(function(resolve, reject){
-    if (!data.facebookID){
+    if(!data.facebookID){
       reject('Requires facebook ID parameter');
     }
 
     var query = [
       'MATCH (user:User {facebookID: {facebookID}})',
-      'DELETE user',
+      'DELETE user'
     ].join('\n');
 
     var params = data;
 
-    db.query(query, params, function (err, results) {
+    db.query(query, params, function(err, results){
       if(err){ 
         reject(err); 
       } else {
@@ -101,10 +101,10 @@ var chooseTypes = function(relationshipType){
   if(relationshipType === 'FOLLOWS'){
     idType = 'facebookID';
     thingType = 'User';
-  } else if (relationshipType === 'HAS'){
+  } else if(relationshipType === 'HAS'){
     idType = 'reviewID';
     thingType = 'Review';
-  } else if (relationshipType === 'ISLOCAL'){
+  } else if(relationshipType === 'ISLOCAL'){
     idType = 'placeID';
     thingType= 'Place';
   }
@@ -119,7 +119,7 @@ User.addRelationship = function(user, thing, relationshipType){
 
   return new Promise(function(resolve, reject){
 
-    if (!user.facebookID || !thing[idType]){
+    if(!user.facebookID || !thing[idType]){
       reject('Requires facebook ID parameter and ' + idType + ' parameter');
     }
 
@@ -132,11 +132,11 @@ User.addRelationship = function(user, thing, relationshipType){
 
     var params = {user:user,  thing:thing};
 
-    db.query(query, params, function (err, results) {
+    db.query(query, params, function(err, results){
       if(err){ 
         reject(err);
       } else {
-        if (results && results[0] && results[0].user) {
+        if(results && results[0] && results[0].user){
           resolve(new User(results[0].user));
         } else {
           reject(new Error('at least one side of the relationship does not exist'));
@@ -156,7 +156,7 @@ User.removeRelationship = function(user, thing, relationshipType){
 
   return new Promise(function(resolve, reject){
 
-    if (!user.facebookID || !thing[idType]){
+    if(!user.facebookID || !thing[idType]){
       reject('Requires facebook ID parameter and ' + idType + ' parameter');
     }
 
@@ -170,11 +170,11 @@ User.removeRelationship = function(user, thing, relationshipType){
 
     var params = {user:user,  thing:thing, thingType:thingType};
 
-    db.query(query, params, function (err, results) {
+    db.query(query, params, function (err, results){
       if(err){ 
         reject(err);
       } else {
-        if (results && results[0] && results[0].user) {
+        if(results && results[0] && results[0].user){
           resolve(new User(results[0].user));
         } else {
           reject(new Error('at least one side of the relationship does not exist'));
@@ -189,7 +189,7 @@ User.findRelated = function(facebookID, relationshipType){
 
     var query = [
       'MATCH (user:User {facebookID: {facebookID}})-[:{relationshipType}]->(node)',
-      'RETURN node,'
+      'RETURN node'
     ].join('\n');
 
     var params = {
@@ -197,11 +197,11 @@ User.findRelated = function(facebookID, relationshipType){
       'relationshipType': relationshipType
     };
     
-    db.query(query, params, function (err, results) {
-      if (err){
+    db.query(query, params, function(err, results){
+      if(err){
        reject(err); 
       } else {
-        var parsedResults = _.map(results, function (item) {
+        var parsedResults = _.map(results, function(item){
           return item;
         });
         resolve(parsedResults);

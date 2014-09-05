@@ -4,24 +4,23 @@ angular.module('yokelApp')
   .controller('HomeController', function($scope, $http, loadSearch){
     $scope.map = {
       center: {
-          latitude: 45,
-          longitude: -73
+        latitude: 45,
+        longitude: -73
       },
       zoom: 8
-      };
-      console.log($scope.map)
+    };
     $scope.data = {};
-    $scope.searchNearby = loadSearch.searchNearby
+    $scope.searchNearby = loadSearch.searchNearby;
     $scope.searchNearby()
       .then(function(businesses){
         $scope.data = businesses.data;
-      })
+      });
   })
 
-    .controller('mainCtrl', function($scope) {
-        $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
-        $scope.options = {scrollwheel: false};
-    })
+  .controller('mapController', function($scope){
+      $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
+      $scope.options = {scrollwheel: false};
+  })
 
   //needs to locate and search on init
   .factory('locate', function(){
@@ -30,10 +29,10 @@ angular.module('yokelApp')
         var userPosition = [position.coords.latitude, position.coords.longitude];
         return userPosition;
       });
-    }
+    };
     return {
       locateUser: locateUser
-    }
+    };
   })
 
   //searches for businesses on load
@@ -41,7 +40,7 @@ angular.module('yokelApp')
     var searchNearby = function(){
       var searchObj = {
         position: locate.locateUser()
-      }
+      };
       return $http({
         method: 'GET',
         url: 'api/nearby',
@@ -52,7 +51,7 @@ angular.module('yokelApp')
     };
     return {
       searchNearby: searchNearby
-    }
+    };
   });
 
   
