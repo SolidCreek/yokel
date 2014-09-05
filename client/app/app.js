@@ -5,12 +5,15 @@ angular.module('yokelApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ui.bootstrap'
-  //'google-maps'
+  'ui.bootstrap',
+  'google-maps'
 ])
+
   .config(function($stateProvider, $urlRouterProvider, $locationProvider){
     $urlRouterProvider
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
   });
+
+  //If is logged in - logout button else login button with modal

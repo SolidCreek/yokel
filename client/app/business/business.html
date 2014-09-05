@@ -1,11 +1,18 @@
 
 <!-- Header from index/outer view -->
 <form ng-submit="search()">
-  <input type="text" placeholder="Seach" ng-model="searchFilter"></input> 
+  <input type="text" placeholder="Seach for local establishments!" ng-model="searchFilter"></input> 
 </form>
-
-<div class="info">Business Info Goes Here</div>
-
-<div class="map">Map Info Goes Here</div>
-
-<div class="reviews">Reviews Go Here</div>
+<div class="business-info">
+  <ul>
+    <li>{{business.name}}></li>
+    <li>{{business.score}}></li>
+    <li>{{business.address}}></li>
+  </ul>
+</div>
+<div class="reviews">
+  <h1>Reviews</h1>
+  <ul>
+    <a ui-sref="users({userId: user.userId})"><li ng-repeat="reviews in data.results">{{user.name}}<span>{{user.localPull}}</span><span>{{review.text}}</span><span>{{review.score}}</span></li>
+  </ul>
+</div>
