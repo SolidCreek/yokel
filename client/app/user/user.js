@@ -4,7 +4,7 @@ angular.module('yokelApp')
   .config(function($stateProvider){
     $stateProvider
       .state('user', {
-        url: '/user',
+        url: '/user/:userId',
         templateUrl: 'app/user/user.html',
         controller: 'UserController'
       });
