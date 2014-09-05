@@ -15,7 +15,7 @@ var app = express();
 var passport = require("passport");
 var pass = require("./auth/handler/passport")(passport);
 var server = require('http').createServer(app);
-require('./config/express')(app);
+require('./config/express')(app, passport);
 require('./routes')(app, passport);
 
 // Start server

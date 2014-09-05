@@ -12,12 +12,13 @@ module.exports = function(passport) {
 
 	// used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+      console.log(user);
+        done(null, user.facebookID);
     });
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
+        User.find(id, function(err, user) {
             done(err, user);
         });
     });
@@ -48,12 +49,13 @@ module.exports = function(passport) {
 	        User.createUniqueUser({facebookID:profile.id, 
 	        					   facebookToken:token, 
 	        					   name: profile.name.givenName + ' ' + profile.name.familyName,
-	        					   email:profile.email[0].value})
+	        					   email:profile.emails[0].value})
 	        .then(function(data){
-	        	return data.node._data.data;
+	        	return done(null, data.node._data.data);
 	        })
 	        .catch(function(err){
 	        	console.log(err);
+            return done(err);
 	        });
 	        
 	   //     User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
