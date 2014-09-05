@@ -80,6 +80,6 @@ angular.module('yokelApp')
   return {
     signin: signin,
     signup: signup,
-    logout: logout
+    signout: signout
   };
 });

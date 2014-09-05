@@ -4,10 +4,7 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
-div{
-    border:1px solid black;
-    margin: 30px;
-}
+
 .info{
     float:left;
     width:40%;
