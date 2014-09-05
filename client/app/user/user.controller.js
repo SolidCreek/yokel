@@ -22,7 +22,7 @@ angular.module('yokelApp')
         data: userId
       }).success(function(user){
         return user;
-      }) 
+      })
       return {
         getUserPage: getUserPage
       }      

@@ -3,14 +3,13 @@
 angular.module('yokelApp')
 
   .controller('BusinessController', function($scope, $http, $stateParams, BusinessPages){
+    var businessId = $stateParams.placeId;
     $scope.business = {};
-    var businessId = $stateParams.placeId
-    console.log($stateParams.placeId)
     $scope.getBusinessPage = BusinessPages.getBusinessPage;
     $scope.getBusinessPage(businessId)
       .then(function(business){
         $scope.business = business;
-      })    
+      });
   })
 
   .controller('ReviewController', function($scope, $http){
@@ -30,5 +29,5 @@ angular.module('yokelApp')
     };
     return {
       getBusinessPage: getBusinessPage
-    }
+    };
   });  
