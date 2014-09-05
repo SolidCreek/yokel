@@ -31,11 +31,17 @@
   <body ng-app="yokelApp">
 
     <div class="nav-bar">
-      <h1 id="site-title">Yokel</h1><div class="user-login-buttons">login/signup</div>
+      <h1 id="site-title">Yokel</h1>
+      <div class="user-login-signup-button">
+        <a class="login-button-text" ui-sref="signin">
+        Sign in
+      </div>
     </div>
     
     <!-- Add your site or application content here -->
-    <div class="template-container" ui-view=""></div>
+    <div class="template-container">
+      <div ui-view=""></div>
+    </div>
 
     <!-- build:js({client}) app/vendor.js -->
       <!-- bower:js -->

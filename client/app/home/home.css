@@ -12,6 +12,8 @@
 
 .search-bar{
   width: 300px;
+  margin-top: 10px;
+  margin-left: 35%;
 }
 
 .selection-panel{
