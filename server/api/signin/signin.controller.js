@@ -10,9 +10,10 @@
 'use strict';
 
 var _ = require('lodash');
+var User = require('../users/userModel');
 
 // Get list of things
-exports.index = function(req, res) {
+exports.index = function(req, res){
   
   res.json([
     {

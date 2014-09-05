@@ -8,3 +8,4 @@ dist
 /server/config/local.env.js
 **/*.DS_Store
 azure.err
+.c9/

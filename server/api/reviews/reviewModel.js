@@ -20,21 +20,21 @@ var Review = function(node){
 //Primary function to instantiate new reviews based on review id: 
 //requires an object parameter that includes {reviewID: value, text: "This is the review text", score: 27} 
 //returns a promise with a newly created review object
-Review.createUniqueReview = function (data) {
+Review.createUniqueReview = function(data) {
   return new Promise(function(resolve, reject){
-    if (!data.reviewID){
+    if(!data.reviewID){
       reject('Requires review ID parameter');
     }
 
     var query = [
       'MERGE (review:Review {reviewID: {reviewID}})',
       'SET review.text = {text}, review.score={score}',
-      'RETURN review',
+      'RETURN review'
     ].join('\n');
 
     var params = data;
 
-    db.query(query, params, function (err, results) {
+    db.query(query, params, function(err, results){
       if(err){ 
         reject(err); 
       } else {
@@ -46,20 +46,20 @@ Review.createUniqueReview = function (data) {
 
 // Find a single review in the database, requires reviewID as input
 // If review is not in database, promise will resolve to error 'review does not exist'
-Review.find = function (data) {
+Review.find = function(data){
   return new Promise(function(resolve, reject){
     var query = [
       'MATCH (review:Review {reviewID: {reviewID}})',
-      'RETURN review',
+      'RETURN review'
     ].join('\n');
 
     var params = data;
 
-    db.query(query, params, function (err, results) {
+    db.query(query, params, function(err, results){
       if(err){ 
         reject(err);
       } else {
-        if (results && results[0] && results[0].review) {
+        if(results && results[0] && results[0].review){
           resolve(new Review(results[0].review));
         } else {
           reject(new Error('review does not exist'));
@@ -78,12 +78,12 @@ Review.deletereview = function(data){
 
     var query = [
       'MATCH (review:Review {reviewID: {reviewID}})',
-      'DELETE review',
+      'DELETE review'
     ].join('\n');
 
     var params = data;
 
-    db.query(query, params, function (err, results) {
+    db.query(query, params, function(err, results){
       if(err){ 
         reject(err); 
       } else {

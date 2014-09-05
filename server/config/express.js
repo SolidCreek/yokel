@@ -14,8 +14,9 @@ var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
 var path = require('path');
 var config = require('./environment');
+var session = require('express-session');
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
   var env = app.get('env');
 
   app.set('views', config.root + '/server/views');
@@ -26,6 +27,9 @@ module.exports = function(app) {
   app.use(bodyParser.json());
   app.use(methodOverride());
   app.use(cookieParser());
+  app.use(session({ secret: '564ertgs53wafsedzfg46tfq' })); // session secret
+  app.use(passport.initialize());
+  app.use(passport.session());
   
   if ('production' === env) {
     app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
