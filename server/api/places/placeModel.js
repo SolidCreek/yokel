@@ -28,6 +28,7 @@ Place.createUniquePlace = function(data){
 
     var query = [
       'MERGE (place:Place {placeID: {placeID}})',
+      'ON CREATE SET place.score = 50',
       'RETURN place',
     ].join('\n');
 
@@ -68,6 +69,18 @@ Place.find = function(data){
   });
 };
 
+Place.findScore = function(data){
+  return new Promise(function(resolve, reject){
+    Place.createUniquePlace(data)
+    .then(function(data){
+      resolve(data.node._data.data.score);
+    })
+    .catch(function(err){
+      resolve(new Error('Score could not be found'));
+    });
+  });
+}
+
 //Deletes Place, requires placeID as input.
 Place.deletePlace = function(data){
   return new Promise(function(resolve, reject){
@@ -96,6 +109,7 @@ Place.deletePlace = function(data){
 
 
 //add relationship: requires a Place, and a review,
+Place.addRelationship = function(place, review){
   return new Promise(function(resolve, reject){
 
     if(!place.placeID || !review.reviewID){
@@ -132,8 +146,8 @@ Place.removeRelationship = function(place, review){
 
   return new Promise(function(resolve, reject){
 
-    if (!place.placeID || !thing[idType]){
-      reject('Requires place ID parameter and ' + idType + ' parameter');
+    if (!place.placeID || !review.reviewID){
+      reject('Requires place ID parameter and review ID parameter');
     }
 
     var query = [
