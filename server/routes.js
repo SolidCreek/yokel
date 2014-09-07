@@ -5,7 +5,8 @@
 'use strict';
 
 var errors = require('./components/errors');
-
+var place = require('./api/place/place.controller');
+var nearby = require('./api/nearby/nearby.controller');
 module.exports = function(app, passport){
 
   // Insert routes below
@@ -15,8 +16,20 @@ module.exports = function(app, passport){
   app.use('/api/following', isLoggedIn, require('./api/following'));
   app.use('/api/signin', require('./api/signin'));
   app.use('/api/signup', require('./api/signup'));
-  app.use('/api/nearby', require('./api/nearby'));
-  app.use('/api/place', require('./api/place'));
+  //this will catch all requests to bueinesses and attempt to locate them
+  //from google places
+  app.get('/api/businesses/:businesseId', function(req, res) {
+    place.index(req, res);
+  });
+  app.get('/api/place/:businesseId', function(req, res) {
+    place.index(req, res);
+  });
+
+  //this will catch all requests to nearby and attempt to locate places near them
+  //from google places
+  app.get('/api/nearby/:lat/:lon', function(req, res) {
+    nearby.index(req, res);
+  });
 
     // =====================================
 	  //   FACEBOOK ROUTES =====================

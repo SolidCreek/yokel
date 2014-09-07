@@ -59,7 +59,7 @@ describe('GET /api/nearby', function() {
       });
   });
 
-  it('should respond with JSON array of objects with a placeId field', function(done) {
+  it('should respond with JSON array of objects with a place_id field', function(done) {
     request(app)
       .get('/api/nearby')
       .expect(200)
@@ -68,7 +68,7 @@ describe('GET /api/nearby', function() {
         if (err){
           return done(err);
         }
-        should.exist(res.body[0].placeId);
+        should.exist(res.body[0].place_id);
         done();
       });
   });

@@ -10,6 +10,11 @@
 'use strict';
 
 var _ = require('lodash');
+var request = require('request');
+var Place = require('../places/placeModel.js');
+var Promise = require('bluebird');
+var http = require('http');
+var config = require('../../config/environment/production');
 var Place = require('../place/placeModel.js');
 var Promise = require('bluebird');
 
@@ -19,83 +24,11 @@ var Promise = require('bluebird');
 
 //api call gets a list of places : currently faked
 //these will come in without scores
-var places = [
-    {
-      name : 'SuperDuper',
-      placeId: '87o3giyrlb3o7',
-      timeOpen: '0900',
-      timeClose: '2230',
-      location: ''
-    },
-    {
-      name : 'Blue Bottle',
-      placeId: 'gsldufgyow75w',
-      timeOpen: '0600',
-      timeClose: '1900',
-      location: ''
-    },
-    {
-      name : 'Panda Express',
-      placeId: '872613irghkyj',
-      timeOpen: '1000',
-      timeClose: '2200',
-      location: ''
-    },
-    {
-      name : 'Philz',
-      placeId: '923764grfyunf',
-      timeOpen: '0500',
-      timeClose: '2000',
-      location: ''
-    },
-    {
-      name : 'Fish Place',
-      placeId: 'gjkds7o8yihlu4',
-      timeOpen: '1400',
-      timeClose: '2330',
-      location: ''
-    },
-    {
-      name : 'ZPizza',
-      placeId: '9s8oduiyhbvbcds',
-      timeOpen: '1000',
-      timeClose: '0100',
-      location: ''
-    },
-    {
-      name : 'Beer-n-Stuff',
-      placeId: '76gdfbakj3ybbf',
-      timeOpen: '1700',
-      timeClose: '0415',
-      location: ''
-    },
-    {
-      name : 'Red Rose',
-      placeId: '87aiygkjrfb43d',
-      timeOpen: '0900',
-      timeClose: '2200',
-      location: ''
-    },
-    {
-      name : '24 Hour Good Eats',
-      placeId: 'iauw6ygfaikuwy',
-      timeOpen: '0000',
-      timeClose: '2359',
-      location: ''
-    },
-    {
-      name : 'Little Peats Big Grill',
-      placeId: '98q7w6tefgyubbf',
-      timeOpen: '1400',
-      timeClose: '2345',
-      location: ''
-    }
-  ];
 
 //helper function to look up place and insert score
 var addDatabase = function(place){
   //look up place: create if non-existent
-  place.score = Place.findScore({placeID: place.placeId});
+  place.score = Place.findScore({place_id: place.place_id});
   return Promise.props(place);
 };
 //adds all scores for the list of places
@@ -109,7 +42,7 @@ var addScores = function(places){
 //find the 10 best places by score
 var findBest = function(placesWithScores){
   //sort array in descending order by score
-  places.sort(function(a, b){
+  placesWithScores.sort(function(a, b){
     if(a.score < b.score){
       return 1;
     } else if (a.score > b.score){
@@ -120,15 +53,36 @@ var findBest = function(placesWithScores){
   //return the first 10 items
   return placesWithScores.splice(0, 10);
 }
-
-
+var apiRequest = function(req, res){
+  request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.param("lat") + ',' + req.param("lon") +'&radius=3200&types=food&key=AIzaSyCvwQgDBVcJvCFFjxpWfUIwpp1VnCa9Fyk', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var places = JSON.parse(body).results
+      addScores(places)
+       .then(function(data){
+         res.json(findBest(data));
+       });
+    }
+  })
+};
 //and finaly serve that information, so so should only be storing the "local rating" and reviews
 //of the location and grabbing all of the other info from google places!
 //also we might want to concider grabbing our reviews now so they are ready
 //when the location is selected later
 exports.index = function(req, res) {
-  addScores(places)
-  .then(function(data){
-    res.json(findBest(data));
-  });
+  if(config.googleAPIKey){
+    //we expect in a google places_id in req data
+    if(req.param("lat") && req.param("lat")){
+        apiRequest(req, res);
+      } else {
+        res.send(400);
+      }
+  } else {
+    res.send(500);
+    throw("No googleAPIKey found on your system, "+
+          "please set an enviroment variable using, "+
+          "export GOOGLE_API_KEY=yourAPIKeyHere "+
+          "in the terminal that you are running the server in "+
+          "or set in in your bash_profial for persistance."+
+          "Your Key was: " + config.googleAPIKey);
+  }
 };

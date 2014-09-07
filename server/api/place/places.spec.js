@@ -32,7 +32,7 @@ describe('GET /api/place', function() {
       });
   });
 
-  it('should respond with JSON object with a placeId field', function(done) {
+  it('should respond with JSON object with a place_id field', function(done) {
     request(app)
       .get('/api/place')
       .expect(200)
@@ -41,7 +41,7 @@ describe('GET /api/place', function() {
         if (err){
           return done(err);
         }
-        should.exist(res.body.placeId);
+        should.exist(res.body.place_id);
         done();
       });
   });
