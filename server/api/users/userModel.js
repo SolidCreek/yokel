@@ -101,7 +101,7 @@ var chooseTypes = function(relationshipType){
   if(relationshipType === 'FOLLOWS'){
     idType = 'facebookID';
     thingType = 'User';
-  } else if(relationshipType === 'HAS'){
+  } else if(relationshipType === 'WRITES'){
     idType = 'reviewID';
     thingType = 'Review';
   } else if(relationshipType === 'ISLOCAL'){
@@ -210,5 +210,32 @@ User.findRelated = function(facebookID, relationshipType){
   });
 };
 
+//checks if a user is local to a particular business
+//requires facebookID and placeID
+User.isLocal = function(facebookID, placeID){
+  return new Promise(function(resolve, reject){
+
+    var query = [
+      'MATCH (user:User {facebookID: {facebookID}})-[r:ISLOCAL]->(place:Place {placeID: {placeID}})',
+      'RETURN r'
+    ].join('\n');
+
+    var params = {
+      'facebookID': facebookID,
+      'placeID': placeID
+    };
+    
+    db.query(query, params, function(err, results){
+      if(err){
+       reject(err); 
+      } else {
+        var parsedResults = _.map(results, function(item){
+          return item;
+        });
+        resolve(parsedResults);
+      }
+    });
+  });
+};
 
 module.exports = User;

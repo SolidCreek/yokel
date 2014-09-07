@@ -201,5 +201,11 @@ Place.findRelated = function(placeID){
   });
 };
 
+//updates the local score based on the reviews a place has
+//requires an object with a place id
+Place.updateScore = function(data){
+  
+};
+
 
 module.exports = Place;
