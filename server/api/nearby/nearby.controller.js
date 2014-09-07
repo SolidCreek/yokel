@@ -10,7 +10,7 @@
 'use strict';
 
 var _ = require('lodash');
-var Place = require('../places/placeModel.js');
+var Place = require('../place/placeModel.js');
 var Promise = require('bluebird');
 
 // Get list of locations that are top ranked in the radius

@@ -16,7 +16,8 @@ module.exports = function(app, passport){
   app.use('/api/signin', require('./api/signin'));
   app.use('/api/signup', require('./api/signup'));
   app.use('/api/nearby', require('./api/nearby'));
-    
+  app.use('/api/place', require('./api/place'));
+
     // =====================================
 	  //   FACEBOOK ROUTES =====================
 	  // =====================================
