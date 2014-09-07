@@ -1,1 +1,42 @@
-.angular-google-map-container { height: 400px; }
+/**********************************
+home wide styles
+**********************************/
+#home{
+  position: absolute;
+  border: none;
+  margin: 0px;
+}
+
+/**********************************
+search bar related styling
+**********************************/
+
+.search-bar{
+  width: 300px;
+  margin-top: 10px;
+  margin-left: 85%;
+}
+
+/**********************************
+selection panel styling
+**********************************/
+
+.selection-panel{
+  position: absolute;
+  background-color: LimeGreen;
+  height: 600px;
+  top: 0px;
+  width: 45%;
+}
+
+/**********************************
+map styling
+**********************************/
+
+.angular-google-map-container{ 
+  height: 500px;
+  width: 500px;
+  left: 400px;
+  top: 50px;
+}
+

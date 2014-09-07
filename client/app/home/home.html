@@ -1,16 +1,15 @@
-<div id="map_canvas" ng-controller="mapController">
-    <google-map center="map.center" zoom="map.zoom" draggable="true"></google-map>
-</div>
 <div id="home" ng-controller="HomeController">
-  <nav>
-    <div><a ui-sref="signin">Sign in</div>
-  </nav>
+
   <form ng-submit="search()">
-    <input type="text" placeholder="Seach for local establishments!" ng-model="searchFilter"></input> 
+    <input class="search-bar" type="text" placeholder="Seach for local establishments!" ng-model="searchFilter"></input> 
   </form>
+
+    <google-map class="map-container" ng-controller="mapController" center="map.center" zoom="map.zoom" draggable="true"></google-map>
+
   <div class="selection-panel">
     <ul>
       <a  ng-repeat="business in data" ui-sref="business({placeId: business.placeId})"><li>{{business.name}}<span>{{business.score}}</span><span>{{business.distance}}mi</span></li>
     </ul>
   </div>
+
 </div>
