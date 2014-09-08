@@ -14,7 +14,12 @@ var Place = function(node){
   this.node = node;
 };
 
-
+// Example data object: 
+// {
+//   place_id: 453ade3211ff2 
+//   name: "Bob's Burgers"
+//   score: 47
+// }
 
 //Functions to add/find/remove Places
 //Primary function to instantiate new Places based on place id: 
