@@ -31,11 +31,16 @@
   <body ng-app="yokelApp">
 
     <div class="nav-bar">
-      <h1 id="site-title">Yokel</h1><div class="user-login-buttons">login/signup</div>
+      <h1 id="site-title">Yokel</h1>
+      <div class="user-login-signup-button">
+        <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Log in With Facebook</a>
+      </div>
     </div>
     
     <!-- Add your site or application content here -->
-    <div ui-view=""></div>
+    <div class="template-container">
+      <div ui-view=""></div>
+    </div>
 
     <!-- build:js({client}) app/vendor.js -->
       <!-- bower:js -->
@@ -60,7 +65,6 @@
           <script src="app/home/home.controller.js"></script>
           <script src="app/home/home.js"></script>
           <script src="app/map.js"></script>
-          <script src="app/user/Auth.js"></script>
           <script src="app/user/user.controller.js"></script>
           <script src="app/user/user.js"></script>
           <!-- endinjector -->

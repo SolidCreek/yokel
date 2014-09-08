@@ -11,6 +11,7 @@
     "cookie-parser": "~1.0.1",
     "ejs": "~0.8.4",
     "errorhandler": "~1.0.0",
+    "expect": "^0.1.1",
     "express": "~4.0.0",
     "express-session": "~1.0.2",
     "lodash": "~2.4.1",
@@ -19,7 +20,9 @@
     "neo4j": "^1.1.0",
     "passport": "^0.2.1",
     "passport-facebook": "^1.0.3",
-    "serve-favicon": "~2.0.1"
+    "request": "^2.42.0",
+    "serve-favicon": "~2.0.1",
+    "superagent": "^0.18.2"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

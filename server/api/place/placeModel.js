@@ -18,17 +18,17 @@ var Place = function(node){
 
 //Functions to add/find/remove Places
 //Primary function to instantiate new Places based on place id: 
-//requires an object parameter that includes {placeID: value} 
+//requires an object parameter that includes {place_id: value} 
 //returns a promise with a newly created Place object
 Place.createUniquePlace = function(data){
   return new Promise(function(resolve, reject){
-    if(!data.placeID){
-      reject('Requires place ID parameter');
+    if(!data.place_id && !data.name){
+      reject('Requires place ID && name parameter');
     }
 
     var query = [
-      'MERGE (place:Place {placeID: {placeID}})',
-      'ON CREATE SET place.score = 50',
+      'MERGE (place:Place {place_id: {place_id}})',
+      'ON CREATE SET place.score = 50, place.name = {name}',
       'RETURN place',
     ].join('\n');
 
@@ -44,12 +44,12 @@ Place.createUniquePlace = function(data){
   });
 };
 
-// Find a single Place in the database, requires placeID as input
+// Find a single Place in the database, requires place_id as input
 // If Place is not in database, promise will resolve to error 'Place does not exist'
 Place.find = function(data){
   return new Promise(function(resolve, reject){
     var query = [
-      'MATCH (place:Place {placeID: {placeID}})',
+      'MATCH (place:Place {place_id: {place_id}})',
       'RETURN place',
     ].join('\n');
 
@@ -69,7 +69,7 @@ Place.find = function(data){
   });
 };
 
-//gets the place score.  requires placeID as input
+//gets the place score.  requires place_id as input
 Place.findScore = function(data){
   return new Promise(function(resolve, reject){
     Place.createUniquePlace(data)
@@ -77,21 +77,22 @@ Place.findScore = function(data){
       resolve(data.node._data.data.score);
     })
     .catch(function(err){
+      console.log("There was an error finding the score: " + err);
       resolve(new Error('Score could not be found'));
     });
   });
 };
 
 
-//Deletes Place, requires placeID as input.
+//Deletes Place, requires place_id as input.
 Place.deletePlace = function(data){
   return new Promise(function(resolve, reject){
-    if(!data.placeID){
+    if(!data.place_id){
       reject('Requires place ID parameter');
     }
 
     var query = [
-      'MATCH (place:Place {placeID: {placeID}})',
+      'MATCH (place:Place {place_id: {place_id}})',
       'DELETE place'
     ].join('\n');
 
@@ -114,12 +115,12 @@ Place.deletePlace = function(data){
 Place.addRelationship = function(place, review){
   return new Promise(function(resolve, reject){
 
-    if(!place.placeID || !review.reviewID){
+    if(!place.place_id || !review.reviewID){
       reject('Requires place ID parameter and review ID parameter');
     }
 
     var query = [
-      'MATCH (place:Place {placeID: {place.placeID}})',
+      'MATCH (place:Place {place_id: {place.place_id}})',
       'MATCH (review:Review {reviewID: reviewID})',
       'MERGE (place)-[r:HAS]->(review)',
       'RETURN place'
@@ -148,12 +149,12 @@ Place.removeRelationship = function(place, review){
 
   return new Promise(function(resolve, reject){
 
-    if (!place.placeID || !review.reviewID){
+    if (!place.place_id || !review.reviewID){
       reject('Requires place ID parameter and review ID parameter');
     }
 
     var query = [
-      'MATCH (place:Place {placeID: {place.placeID}})',
+      'MATCH (place:Place {place_id: {place.place_id}})',
       'MATCH (review:Review {reviewID: reviewID})',
       'MERGE (place)-[r:HAS]->(review)',
       'DELETE r',
@@ -176,16 +177,16 @@ Place.removeRelationship = function(place, review){
   });
 };
 //finds reviews
-Place.findRelated = function(placeID){
+Place.findRelated = function(place_id){
   return new Promise(function(resolve, reject){
 
     var query = [
-      'MATCH (place:Place {placeID: {placeID}})-[:HAS]->(review)',
+      'MATCH (place:Place {place_id: {place_id}})-[:HAS]->(review)',
       'RETURN review'
     ].join('\n');
 
     var params = {
-      'placeID': placeID
+      'place_id': place_id
     };
     
     db.query(query, params, function(err, results){
