@@ -12,16 +12,16 @@ angular.module('yokelApp')
       });
   })
 
-  .controller('ReviewController', function($scope, $http){
+  // .controller('ReviewController', function($scope, $http){
     
-  })
+  // })
 
   //Sends of businessId to server to return specific business
   .factory('BusinessPages', function($http){
     var getBusinessPage = function(businessId){
       return $http({
         method: 'GET',
-        url: 'api/businesses',
+        url: 'api/businesses'+'/'+businessesId,
         data: businessId
       }).success(function(business){
         return business;
