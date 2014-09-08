@@ -22,8 +22,8 @@ var Promise = require('bluebird');
 
 */
 
-var userIsLocal = function(userID, placeID){
-  User.isLocal(userID, placeID)
+var userIsLocal = function(userID, place_id){
+  User.isLocal(userID, place_id)
 };
 
     //look up user
@@ -32,13 +32,13 @@ var userIsLocal = function(userID, placeID){
 
 exports.create = function(req, res){
   var userID = req.body.userID;
-  var placeID = req.body.placeID;
+  var place_id = req.body.place_id;
 
   var review = req.body.review;
 
 
-  //check if user is local to placeID
-  // userIsLocal(userID, placeID)
+  //check if user is local to place_id
+  // userIsLocal(userID, place_id)
   // .then(function(data){
   //   if(data.length > 1){
     //create a review
@@ -49,7 +49,7 @@ exports.create = function(req, res){
       })
       .then(function(data){
       //make a HAS relationship from the business
-        Place.addRelationship({placeID: placeID}, review)
+        Place.addRelationship({place_id: place_id}, review)
       })
       .then(function(data){
       //update business score
