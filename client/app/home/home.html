@@ -1,15 +1,17 @@
-<div id="home" ng-controller="HomeController">
+<div ng-controller="HomeController">
 
-  <form ng-submit="search()">
-    <input class="search-bar" type="text" placeholder="Seach for local establishments!" ng-model="searchFilter"></input> 
+  <form class="search-bar" ng-submit="search()">
+    <input class="input-bar" type="text" placeholder="Seach for local establishments!" ng-model="searchFilter"></input> 
   </form>
 
     <google-map class="map-container" ng-controller="mapController" center="map.center" zoom="map.zoom" draggable="true"></google-map>
 
   <div class="selection-panel">
-    <ul>
-      <a  ng-repeat="business in data" ui-sref="business({placeId: business.placeId})"><li>{{business.name}}<span>{{business.score}}</span><span>{{business.distance}}mi</span></li>
-    </ul>
+    <div class="business-list">
+      <ul>
+        <a class="business" ng-repeat="business in data" ui-sref="business({placeId: business.placeId})"><li>{{business.name}}<span>{{business.score}}</span><span>{{business.distance}}mi</span></li>
+      </ul>
+    </div>
   </div>
 
 </div>

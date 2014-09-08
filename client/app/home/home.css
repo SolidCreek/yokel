@@ -1,20 +1,18 @@
 /**********************************
 home wide styles
 **********************************/
-#home{
-  position: absolute;
-  border: none;
-  margin: 0px;
-}
 
 /**********************************
 search bar related styling
 **********************************/
 
 .search-bar{
-  width: 300px;
-  margin-top: 10px;
-  margin-left: 85%;
+  margin-top: 15px;
+  margin-left: 450px;
+}
+
+.input-bar{
+  width: 400px;
 }
 
 /**********************************
@@ -24,9 +22,28 @@ selection panel styling
 .selection-panel{
   position: absolute;
   background-color: LimeGreen;
-  height: 600px;
+  height: 800px;
+  width: 300px;
   top: 0px;
-  width: 45%;
+  left: -5px;
+}
+
+.business-list{
+  position: absolute;
+  top: 75px;
+}
+
+.business{
+  color: white;
+  font-family: "Arial Black";
+  list-style-type: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.business:hover{
+  color: LightGrey;
+  text-decoration: none;
 }
 
 /**********************************
