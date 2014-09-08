@@ -16,22 +16,23 @@ angular.module('yokelApp', [
     $locationProvider.html5Mode(true);
   })
 
-  .controller('AppController', function($http, localStorageService, SearchBar){
-    var searchObj = {};
+  .controller('AppController', function($scope, $http, localStorageService, SearchBar){
+    $scope.searchObj = {};
     var position = localStorageService.get('position');
-    searchObj.lat = position[0];
-    searchObj.lon = position[1];
+    $scope.searchObj.lat = position[0];
+    $scope.searchObj.lon = position[1];
     $scope.search = SearchBar.search;
   })
 
   .factory('SearchBar', function($http){
+    var businessObj = {};
     var search = function(searchObj){
       return $http({
         method: 'GET',
-        url: 'api/nearby/'+searchObj.lat+'/'+searchObj.lon +'/'+searchObj.query,
+        url: 'api/search/'+searchObj.lat+'/'+searchObj.lon +'/'+searchObj.query,
         data: searchObj
       }).success(function(businesses){
-        businessObj.businesses = businesses
+        businessObj.businesses = businesses;
         return businessObj.businesses;
       })
     }

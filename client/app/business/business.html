@@ -1,7 +1,7 @@
 
 <!-- Header from index/outer view -->
-<form ng-submit="search()">
-  <input type="text" placeholder="Seach for local establishments!" ng-model="searchFilter"></input> 
+<form ng-submit="search(searchObj)" ng-controller='AppController'>
+  <input class="search-bar" type="text" placeholder="Seach for local establishments!" ng-model="searchObj.query"></input> 
 </form>
 <div class="business-info" ng-controller="BusinessController">
   <ul>
