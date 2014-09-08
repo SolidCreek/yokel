@@ -23,7 +23,6 @@ var Place = function(node){
 Place.createUniquePlace = function(data){
   return new Promise(function(resolve, reject){
     if(!data.place_id && !data.name){
-      console.log(data);
       reject('Requires place ID && name parameter');
     }
 

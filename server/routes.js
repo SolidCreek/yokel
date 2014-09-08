@@ -7,6 +7,7 @@
 var errors = require('./components/errors');
 var place = require('./api/place/place.controller');
 var nearby = require('./api/nearby/nearby.controller');
+var search = require('./api/search/search.controller');
 module.exports = function(app, passport){
 
   // Insert routes below
@@ -18,10 +19,10 @@ module.exports = function(app, passport){
   app.use('/api/signup', require('./api/signup'));
   //this will catch all requests to bueinesses and attempt to locate them
   //from google places
-  app.get('/api/businesses/:businesseId', function(req, res) {
+  app.get('/api/businesses/:businessId', function(req, res) {
     place.index(req, res);
   });
-  app.get('/api/place/:businesseId', function(req, res) {
+  app.get('/api/place/:businessId', function(req, res) {
     place.index(req, res);
   });
 
@@ -29,6 +30,10 @@ module.exports = function(app, passport){
   //from google places
   app.get('/api/nearby/:lat/:lon', function(req, res) {
     nearby.index(req, res);
+  });
+
+  app.get('/api/search/:lat/:lon/:searchQuery', function(req, res) {
+    search.index(req, res);
   });
 
     // =====================================
@@ -40,8 +45,8 @@ module.exports = function(app, passport){
 	  // handle the callback after facebook has authenticated the user
 	  app.get('/auth/facebook/callback',
 		  passport.authenticate('facebook', {
-			  successRedirect : '/activity',
-			  failureRedirect : '/nearby'
+			  successRedirect : '/',
+			  failureRedirect : '/'
 		  }));
 
 	  // route for logging out

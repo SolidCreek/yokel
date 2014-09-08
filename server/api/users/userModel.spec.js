@@ -1,8 +1,8 @@
 'use strict';
 
 var should = require('should');
-var User = require('./userModel.js');
-var expect = require('expect.js');
+var User = require('./userModel');
+var expect = require('expect');
 
 
 describe('User nodes', function() {
