@@ -54,7 +54,7 @@ var findBest = function(placesWithScores){
   return placesWithScores.splice(0, 10);
 }
 var apiRequest = function(req, res){
-  request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.param("lat") + ',' + req.param("lon") +'&radius=3200&types=food&key=AIzaSyCvwQgDBVcJvCFFjxpWfUIwpp1VnCa9Fyk', function (error, response, body) {
+  request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.param("lat") + ',' + req.param("lon") +'&radius=3200&types=food&key=' + config.googleAPIKey , function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var places = JSON.parse(body).results
       addScores(places)
