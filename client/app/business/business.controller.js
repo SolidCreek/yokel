@@ -16,6 +16,12 @@ angular.module('yokelApp')
     $scope.reviewObj = {};
     $scope.reviewObj.place_id = businessId;
     $scope.submitReview = ReviewResults.submitReview;
+
+    $scope.data = {};
+    $scope.markers = [];
+    navigator.geolocation.getCurrentPosition(function(position){
+      $scope.map = new google.maps.Map(document.getElementById('map'), {center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude), zoom: 14 });
+    })
   })
 
   .factory('ReviewResults', function($http){
