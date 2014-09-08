@@ -52,8 +52,6 @@ container styling
 
 .template-container{
     position: absolute;
-    width: 100%;
-    height: 100%;
     top: 40px;
     margin: 0px;
     border: none;
