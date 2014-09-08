@@ -8,7 +8,7 @@ angular.module('yokelApp')
     $scope.getBusinessPage = BusinessPages.getBusinessPage;
     $scope.getBusinessPage(businessId)
       .then(function(business){
-        $scope.business = business;
+        $scope.business = business.data[0];
       });
   })
 

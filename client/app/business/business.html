@@ -3,15 +3,21 @@
 <form ng-submit="search()">
   <input type="text" placeholder="Seach for local establishments!" ng-model="searchFilter"></input> 
 </form>
-<div class="business-info">
+<div class="business-info" ng-controller="BusinessController">
   <ul>
-    <li>{{business.name}}></li>
-    <li>{{business.score}}></li>
-    <li>{{business.address}}></li>
+    <li>{{business.name}}</li>
+    <li>{{business.score}}</li>
+    <li>{{business.address}}</li>
   </ul>
 </div>
+<form ng-submit="review()">
+  <input type="text" placeholder="4.5"></input>
+  <input type="text" placeholder="Get the salt and pepper fried crab!"></input> 
+</form>
 <div class="reviews">
   <h1>Reviews</h1>
+  <ul>
+    <li ng-repeat="review in business.reviews">{{review.text}}</li>
   <ul>
     <a ui-sref="users({userId: user.userId})"><li ng-repeat="reviews in data.results">{{user.name}}<span>{{user.localPull}}</span><span>{{review.text}}</span><span>{{review.score}}</span></li>
   </ul>
