@@ -6,22 +6,26 @@ angular.module('yokelApp')
     $scope.data = {};
     $scope.markers = [];
     $scope.searchNearby = loadSearch.searchNearby;
+    $scope.options = {scrollwheel: false};
+    navigator.geolocation.getCurrentPosition(function(position){
+      $scope.map = new google.maps.Map(document.getElementById('map'), {center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude), zoom: 14 });
+    })
     navigator.geolocation.watchPosition(function(position){
       localStorageService.set('position', [position.coords.latitude, position.coords.longitude])
       $scope.searchNearby([position.coords.latitude, position.coords.longitude])
        .then(function(businesses){
           $scope.data = businesses.data;
-          $scope.markers = businesses.data;
+          businesses.data.forEach(function(business){
+            var marker = new google.maps.Marker({
+              map: $scope.map,
+              position: new google.maps.LatLng(business.geometry.location.lat, business.geometry.location.lng)
+            })
+            $scope.markers.push(marker);
+          });
           console.log($scope.markers)
         });
     })
-    $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
-    navigator.geolocation.getCurrentPosition(function(position){
-      $scope.map = {center: {latitude: position.coords.latitude, longitude: position.coords.longitude }, zoom: 14 };
-    })
-    $scope.options = {scrollwheel: false};
   })
-
 
   .factory('loadSearch', function($http){
     var businessObj = {};

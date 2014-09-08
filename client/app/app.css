@@ -17,12 +17,11 @@ user/login/signup button styling
 **********************************/
 
 .user-login-signup-button{
-    background-color: LimeGreen;
     width: 100px;
     height: 30px;
     position: absolute;
     margin-top: 5px;
-    margin-left: 85%;
+    margin-left: 80%;
 }
 
 .login-button-text{
@@ -52,9 +51,9 @@ container styling
 
 .template-container{
     position: absolute;
-    width: 100%;
-    height: 100%;
     top: 40px;
     margin: 0px;
     border: none;
+    width: 100vw;
+    height: 100vh;
 }

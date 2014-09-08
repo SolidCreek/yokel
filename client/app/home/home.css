@@ -1,20 +1,19 @@
 /**********************************
 home wide styles
 **********************************/
-#home{
-  position: absolute;
-  border: none;
-  margin: 0px;
-}
 
 /**********************************
 search bar related styling
 **********************************/
 
 .search-bar{
-  width: 300px;
   margin-top: 10px;
-  margin-left: 85%;
+  margin-left: 40%;
+  padding-bottom: 10px;
+}
+
+.input-bar{
+  width: 400px;
 }
 
 /**********************************
@@ -23,20 +22,39 @@ selection panel styling
 
 .selection-panel{
   position: absolute;
-  background-color: LimeGreen;
-  height: 600px;
+  background-color: DarkGreen;
+  height: 800px;
+  width: 300px;
   top: 0px;
-  width: 45%;
+  left: -5px;
+}
+
+.business-list{
+  position: absolute;
+  top: 75px;
+}
+
+.business{
+  color: white;
+  font-family: "Arial Black";
+  list-style-type: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.business:hover{
+  color: LightGrey;
+  text-decoration: none;
 }
 
 /**********************************
 map styling
 **********************************/
 
-.angular-google-map-container{ 
-  height: 500px;
-  width: 500px;
-  left: 400px;
-  top: 50px;
+#map {
+  position: absolute;
+  height: 650px;
+  width:60%;
+  left: 30%;
 }
 
