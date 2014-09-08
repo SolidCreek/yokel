@@ -35,9 +35,9 @@ wget http://dist.neo4j.org/neo4j-community-2.1.3-unix.tar.gz
 2. Edit conf/neo4j-server.properties with: 
 sudo nano conf/neo4j-server.properties
 Change this line:
-**\#org.neo4j.server.webserver.address=0.0.0.0**
+* **\#org.neo4j.server.webserver.address=0.0.0.0**
 to this: 
-**org.neo4j.server.webserver.address=0.0.0.0**
+* **org.neo4j.server.webserver.address=0.0.0.0**
 and close the editor
 	Hot tip: you can save and exit nano with ctr+x then hit y and enter
 2. Check to see if the service is running with: 
@@ -66,7 +66,7 @@ Private Port: 7474
 3. Select public API access and create new key choose server key
 3. Copy your new API key and export it to your local enviroment
 You can do this with:
-  **export GOOGLE_API_KEY=yourAPIKeyHere**
+  * **export GOOGLE_API_KEY=yourAPIKeyHere**
 3. your key should now be accessable to the server!
 
 ###Facebook API Key and Id
@@ -78,8 +78,8 @@ You can do this with:
 4. On the next screen click skip quick start
 4. This will take you to the apps dash board here you will see the app id and app secret
 4. you should save these keys just like the google api key
-  **export FACEBOOK_CLIENT_ID=facebookAppId**
-  **export FACEBOOK_CLIENT_SECRET=facebookAppSecret**
+   * **export FACEBOOK_CLIENT_ID=facebookAppId**
+   * **export FACEBOOK_CLIENT_SECRET=facebookAppSecret**
 4. Now we need to set the callback urls that your app will accept 
 4. Click settings on the right hand side of the screen
 4. Then click Advanced 
@@ -87,7 +87,8 @@ You can do this with:
   * During development on a local computer set the field to: http://localhost:9000/auth/facebook/callback
   * During production add your website url like this: http://MYWEBSITEHERE/auth/facebook/callback
 4. You need to now save this callback on your computer:
-  **export FACEBOOK_CALLBACK_URL=theURLThatYouSetInTheFacebookValidRedirects**
+  * **export FACEBOOK_CALLBACK_URL=URLThatYouSetInTheValidRedirects**
+
 ## Requirements
 
 
