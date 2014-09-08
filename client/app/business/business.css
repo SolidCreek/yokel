@@ -18,8 +18,11 @@ info styling
 map styling
 **********************************/
 
-.map{
-
+#business-map {
+  position: absolute;
+  height: 400px;
+  left: 30%;
+  z-index: 1;
 }
 
 /**********************************
