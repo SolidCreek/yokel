@@ -6,13 +6,14 @@
 <div class="business-info" ng-controller="BusinessController">
   <ul>
     <li>{{business.name}}</li>
-    <li>{{business.score}}</li>
+    <li>{{business.review}}</li>
     <li>{{business.address}}</li>
   </ul>
 </div>
-<form ng-submit="review()">
-  <input type="text" placeholder="4.5"></input>
-  <input type="text" placeholder="Get the salt and pepper fried crab!"></input> 
+<form ng-controller"BusinessController">
+  <input type="text" placeholder="4.5" ng-model="reviewObj.score" required></input>
+  <input type="text" placeholder="Get the salt and pepper fried crab!" ng-model="reviewObj.text" required></input> 
+  <button ng-click="submitReview(reviewObj)" >Submit</button>
 </form>
 <div class="reviews">
   <h1>Reviews</h1>
