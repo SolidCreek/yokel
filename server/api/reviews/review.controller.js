@@ -31,7 +31,7 @@ var userIsLocal = function(userID, placeID){
 
 exports.create = function(req, res){
   var userID = req.body.userID;
-  var placeID = req.body.placeID;
+  var place_id = req.body.place_id;
 
   var review = req.body.review;
 
@@ -41,7 +41,7 @@ exports.create = function(req, res){
   // .then(function(data){
   //   if(data.length > 1){
     //create a review
-    var reviewID = userID+placeID;
+    var reviewID = userID+place_id;
       Review.createUniqueReview({reviewID: reviewID})
       .then(function(data){
       //make a WRITES relationship from the user
