@@ -46,9 +46,7 @@ module.exports = function(passport) {
 
         // asynchronous
         process.nextTick(function() {
-          
-                //this section need to change as it deals with the database
-          // find the user in the database based on their facebook id
+    
                 profile = profile._json;
               User.createUniqueUser({facebookID:profile.id, 
                            facebookToken:token, 
