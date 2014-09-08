@@ -1,7 +1,7 @@
 
 <!-- Header from index/outer view -->
-<form ng-submit="search()">
-  <input type="text" placeholder="Seach for local establishments!" ng-model="searchFilter"></input> 
+<form ng-submit="search(searchObj)" ng-controller='AppController'>
+  <input class="search-bar" type="text" placeholder="Seach for local establishments!" ng-model="searchObj.query"></input> 
 </form>
 <div class="business-info" ng-controller="BusinessController">
   <ul>
@@ -20,6 +20,7 @@
   <ul>
     <li ng-repeat="review in business.reviews">{{review.text}}</li>
   <ul>
+    <!-- the ui-sref function below is used by UI router to attach paramaters to the url - in this case the user ID to pull specific users once we go to the user state -->
     <a ui-sref="users({userId: user.userId})"><li ng-repeat="reviews in data.results">{{user.name}}<span>{{user.localPull}}</span><span>{{review.text}}</span><span>{{review.score}}</span></li>
   </ul>
 </div>
