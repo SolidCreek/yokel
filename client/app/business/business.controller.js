@@ -3,7 +3,7 @@
 angular.module('yokelApp')
 
   .controller('BusinessController', function($scope, $http, $stateParams, BusinessPages){
-    var businessId = $stateParams.placeId;
+    var businessId = $stateParams.place_id;
     $scope.business = {};
     $scope.getBusinessPage = BusinessPages.getBusinessPage;
     $scope.getBusinessPage(businessId)
@@ -21,7 +21,7 @@ angular.module('yokelApp')
     var getBusinessPage = function(businessId){
       return $http({
         method: 'GET',
-        url: 'api/businesses'+'/'+businessesId,
+        url: 'api/businesses'+'/'+businessId,
         data: businessId
       }).success(function(business){
         return business;
