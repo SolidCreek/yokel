@@ -2,7 +2,7 @@
 
 angular.module('yokelApp')
 
-  .controller('HomeController', function($scope, $http, loadSearch){  
+  .controller('HomeController', function($scope, $http, loadSearch, localStorageService){  
     $scope.data = {};
     $scope.markers = [];
     $scope.searchNearby = loadSearch.searchNearby;
@@ -11,6 +11,7 @@ angular.module('yokelApp')
       $scope.map = new google.maps.Map(document.getElementById('map'), {center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude), zoom: 14 });
     })
     navigator.geolocation.watchPosition(function(position){
+      localStorageService.set('position', [position.coords.latitude, position.coords.longitude])
       $scope.searchNearby([position.coords.latitude, position.coords.longitude])
        .then(function(businesses){
           $scope.data = businesses.data;

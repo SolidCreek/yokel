@@ -31,7 +31,8 @@ var apiRequest = function(req, res){
             reviews: placeInfo.reviews,
             address: placeInfo.formatted_address,
             lattitude: placeInfo.geometry.location.lat,
-            longitude: placeInfo.geometry.location.lng
+            longitude: placeInfo.geometry.location.lng,
+            bulkData: placeInfo
           }
         ]);
       })

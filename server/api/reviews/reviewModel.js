@@ -14,7 +14,12 @@ var Review = function(node){
   this.node = node;
 };
 
-
+// Example reveiw object:
+// {
+//   reviewID: ada39493209cceee0982929211020202393944855757 //(userID + businessID)
+//   score: 4 //out of 5
+//   text: "This place is great!  Service was slow!"
+// }
 
 //Functions to add/find/remove reviews
 //Primary function to instantiate new reviews based on review id: 

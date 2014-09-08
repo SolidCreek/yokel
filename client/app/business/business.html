@@ -1,24 +1,26 @@
 
 <!-- Header from index/outer view -->
-<form ng-submit="search()">
-  <input type="text" placeholder="Seach for local establishments!" ng-model="searchFilter"></input> 
+<form ng-submit="search(searchObj)" ng-controller='AppController'>
+  <input class="search-bar" type="text" placeholder="Seach for local establishments!" ng-model="searchObj.query"></input> 
 </form>
 <div class="business-info" ng-controller="BusinessController">
   <ul>
     <li>{{business.name}}</li>
-    <li>{{business.score}}</li>
+    <li>{{business.review}}</li>
     <li>{{business.address}}</li>
   </ul>
 </div>
-<form ng-submit="review()">
-  <input type="text" placeholder="4.5"></input>
-  <input type="text" placeholder="Get the salt and pepper fried crab!"></input> 
+<form ng-controller"BusinessController">
+  <input type="text" placeholder="4.5" ng-model="reviewObj.score" required></input>
+  <input type="text" placeholder="Get the salt and pepper fried crab!" ng-model="reviewObj.text" required></input> 
+  <button ng-click="submitReview(reviewObj)" >Submit</button>
 </form>
 <div class="reviews">
   <h1>Reviews</h1>
   <ul>
     <li ng-repeat="review in business.reviews">{{review.text}}</li>
   <ul>
+    <!-- the ui-sref function below is used by UI router to attach paramaters to the url - in this case the user ID to pull specific users once we go to the user state -->
     <a ui-sref="users({userId: user.userId})"><li ng-repeat="reviews in data.results">{{user.name}}<span>{{user.localPull}}</span><span>{{review.text}}</span><span>{{review.score}}</span></li>
   </ul>
 </div>

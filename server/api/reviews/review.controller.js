@@ -15,7 +15,6 @@ var Promise = require('bluebird');
 /*
 * Example review object
 * {
-*   reviewID: 79
 *   score: 4 //out of 5
 *   text: "This place was great!  We had fish which was fresh.  Service was slow though." 
 * }
@@ -42,7 +41,8 @@ exports.create = function(req, res){
   // .then(function(data){
   //   if(data.length > 1){
     //create a review
-      Review.createUniqueReview(review)
+    var reviewID = userID+place_id;
+      Review.createUniqueReview({reviewID: reviewID})
       .then(function(data){
       //make a WRITES relationship from the user
         User.addRelationship({facebookID: userID}, review, 'WRITES');

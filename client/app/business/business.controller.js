@@ -2,27 +2,45 @@
 
 angular.module('yokelApp')
 
-  .controller('BusinessController', function($scope, $http, $stateParams, BusinessPages){
+  .controller('BusinessController', function($scope, $http, $stateParams, BusinessPages, ReviewResults){
+    //BusinessId sent to server is being pulled from the URL paramaters ($stateParams.place_id)
     var businessId = $stateParams.place_id;
+
     $scope.business = {};
     $scope.getBusinessPage = BusinessPages.getBusinessPage;
     $scope.getBusinessPage(businessId)
       .then(function(business){
+        console.log(business.data[0])
         $scope.business = business.data[0];
       });
+    $scope.reviewObj = {};
+    $scope.reviewObj.place_id = businessId;
+    $scope.submitReview = ReviewResults.submitReview;
   })
 
-  // .controller('ReviewController', function($scope, $http){
-    
-  // })
+  .factory('ReviewResults', function($http){
+    //submits a review to the database - review object has both input fields as well as the businessId
+    var submitReview = function(reviewObj){
+      console.log(reviewObj)
+      return $http({
+        method: 'POST',
+        url: 'api/reviews/',
+        data: reviewObj
+      }).success(function(reviews){
+        return reviews;
+      })
+    };
+    return {
+      submitReview: submitReview
+    };   
+  })
 
-  //Sends of businessId to server to return specific business
+  //Sends off businessId to server to return specific business
   .factory('BusinessPages', function($http){
     var getBusinessPage = function(businessId){
       return $http({
         method: 'GET',
-        url: 'api/businesses'+'/'+businessId,
-        data: businessId
+        url: 'api/businesses/'+businessId,
       }).success(function(business){
         return business;
       })

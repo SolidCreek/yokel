@@ -1,13 +1,10 @@
 <div ng-controller="HomeController">
 
-  <form class="search-bar" ng-submit="search()">
-    <input class="input-bar" type="text" placeholder="Seach for local establishments!" ng-model="searchFilter"></input> 
+  <form class="search-bar" ng-submit="search(searchObj)" ng-controller='AppController'>
+    <input class="input-bar" type="text" placeholder="Seach for local establishments!" ng-model="searchObj.query"></input> 
   </form>
 
   <div id="map"></div>
-  <!-- <google-map class="map-container" ng-controller="HomeController" center="map.center" zoom="map.zoom" draggable="true">
-    <marker ng-repeat="marker in markers" modules="markers" idkey="marker.idkey" coords="'marker.coords'"></markers>
-  </google-map> -->
 
   <div class="selection-panel">
     <div class="business-list">

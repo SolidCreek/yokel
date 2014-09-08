@@ -14,7 +14,13 @@ var User = function(node){
   this.node = node;
 };
 
-
+//Example data object
+// {
+//   facebookID: 123939402020201
+//   name: "Marcus Phillips"
+//   email: "marcus@hackreactor.com"
+//   facebookToken: 1344312123adeaf9677898898ccddedd9f898eaa98d98ff 
+// }
 
 //Functions to add/find/remove users
 //Primary function to instantiate new users : returns a promise with a newly created user object
