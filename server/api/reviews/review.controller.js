@@ -41,7 +41,7 @@ exports.create = function(req, res){
   // .then(function(data){
   //   if(data.length > 1){
     //create a review
-    var reviewID = userID+placeID;
+    var reviewID = userID+place_id;
       Review.createUniqueReview({reviewID: reviewID})
       .then(function(data){
       //make a WRITES relationship from the user

@@ -35,11 +35,11 @@ wget http://dist.neo4j.org/neo4j-community-2.1.3-unix.tar.gz
 2. Edit conf/neo4j-server.properties with: 
 sudo nano conf/neo4j-server.properties
 Change this line:
-* **\#org.neo4j.server.webserver.address=0.0.0.0**
+* **\#org.neo4j.server.web server.address=0.0.0.0**
 to this: 
-* **org.neo4j.server.webserver.address=0.0.0.0**
+* **org.neo4j.server.web server.address=0.0.0.0**
 and close the editor
-	Hot tip: you can save and exit nano with ctr+x then hit y and enter
+	Hot tip: you can save and exit nano with ctrl+x then hit y and enter
 2. Check to see if the service is running with: 
 sudo service neo4j-service status 
 If the service is not running start it with: 
@@ -64,19 +64,19 @@ Private Port: 7474
 3. Find Places API and turn it on
 3. On the left hand side select credentials
 3. Select public API access and create new key choose server key
-3. Copy your new API key and export it to your local enviroment
+3. Copy your new API key and export it to your local environment
 You can do this with:
   * **export GOOGLE_API_KEY=yourAPIKeyHere**
-3. your key should now be accessable to the server!
+3. your key should now be accessible to the server!
 
 ###Facebook API Key and Id
 4. Go to [https://developers.facebook.com/](https://developers.facebook.com/)
 4. Log in and accept the developer agreement
-4. Once your loged in on the top bar click the Apps drop down and select create new app
+4. Once you're logged in on the top bar click the Apps drop down and select create new app
 4. Select www to create a web based app
-4. Under catagory choose food & drink and create the app
+4. Under category choose food & drink and create the app
 4. On the next screen click skip quick start
-4. This will take you to the apps dash board here you will see the app id and app secret
+4. This will take you to the apps dashboard here you will see the app id and app secret
 4. you should save these keys just like the google api key
    * **export FACEBOOK_CLIENT_ID=facebookAppId**
    * **export FACEBOOK_CLIENT_SECRET=facebookAppSecret**
@@ -88,6 +88,10 @@ You can do this with:
   * During production add your website url like this: http://MYWEBSITEHERE/auth/facebook/callback
 4. You need to now save this callback on your computer:
   * **export FACEBOOK_CALLBACK_URL=URLThatYouSetInTheValidRedirects**
+4. Go back to the Basic tab and add a contact email and site url
+  * you will need to do this in order to make your app public
+4. Next got to status and review and change the slider of: Do you want to make this app and all its live features available to the general public? to Yes
+4. Congratulations you now have a Facebook app that you can authenticate with!
 
 ## Requirements
 
@@ -118,5 +122,6 @@ View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
 
 
