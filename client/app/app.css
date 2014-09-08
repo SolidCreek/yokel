@@ -3,7 +3,7 @@ app wide styles
 **********************************/
 .nav-bar{
     position: fixed;
-    background-color: white;
+    background-color: #EFECCA;
     width: 100%;
     height: 40px;
     margin: 0px;
@@ -17,32 +17,22 @@ user/login/signup button styling
 **********************************/
 
 .user-login-signup-button{
-    width: 100px;
-    height: 30px;
     position: absolute;
-    margin-top: 5px;
+    margin-top: 2px;
     margin-left: 80%;
 }
 
-.login-button-text{
-    color: white;
-    position: absolute;
-    left: 5px;
-    text-decoration: none;
-}
-
-.login-button-text:hover{
-    text-decoration: none;
-    color: white;
-}
 
 /**********************************
 title styling
 **********************************/
 
 #site-title{
+    color: #A7A37E;
+    font-family: Tahoma;
     position: absolute;
     margin-top: auto;
+    left: 10px;
 }
 
 /**********************************

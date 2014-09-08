@@ -15,6 +15,7 @@ angular.module('yokelApp')
       $scope.searchNearby([position.coords.latitude, position.coords.longitude])
        .then(function(businesses){
           $scope.data = businesses.data;
+          console.log($scope.data)
           businesses.data.forEach(function(business){
             var marker = new google.maps.Marker({
               map: $scope.map,

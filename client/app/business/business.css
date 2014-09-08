@@ -1,23 +1,38 @@
-html {
-  box-sizing: border-box;
+/**********************************
+business-page wide styles
+**********************************/
+
+/**********************************
+info styling
+**********************************/
+
+.business-info{
+
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
+.business-info h2{
+  color: #E6E2AF;
 }
 
-.info{
-    float:left;
-    width:40%;
-    height: 300px;
-}
+/**********************************
+map styling
+**********************************/
+
 .map{
-    float:right;
-    width:40%;
-    height: 300px;
+
 }
-.reviews{
-    clear:both;
-    width: 96%;
-    height: 300px;
+
+/**********************************
+review styling
+**********************************/
+
+.business-reviews{
+  position: absolute;
+  background-color: #002F2F;
+  width: 100%;
+  bottom: 0px; 
+}
+
+.business-reviews h2{
+  color: #E6E2AF;
 }
