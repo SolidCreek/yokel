@@ -3,7 +3,9 @@
 angular.module('yokelApp')
 
   .controller('BusinessController', function($scope, $http, $stateParams, BusinessPages, ReviewResults){
+    //BusinessId sent to server is being pulled from the URL paramaters ($stateParams.place_id)
     var businessId = $stateParams.place_id;
+
     $scope.business = {};
     $scope.getBusinessPage = BusinessPages.getBusinessPage;
     $scope.getBusinessPage(businessId)
@@ -17,6 +19,7 @@ angular.module('yokelApp')
   })
 
   .factory('ReviewResults', function($http){
+    //submits a review to the database - review object has both input fields as well as the businessId
     var submitReview = function(reviewObj){
       console.log(reviewObj)
       return $http({
@@ -32,7 +35,7 @@ angular.module('yokelApp')
     };   
   })
 
-  //Sends of businessId to server to return specific business
+  //Sends off businessId to server to return specific business
   .factory('BusinessPages', function($http){
     var getBusinessPage = function(businessId){
       return $http({

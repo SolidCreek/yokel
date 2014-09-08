@@ -20,6 +20,7 @@
   <ul>
     <li ng-repeat="review in business.reviews">{{review.text}}</li>
   <ul>
+    <!-- the ui-sref function below is used by UI router to attach paramaters to the url - in this case the user ID to pull specific users once we go to the user state -->
     <a ui-sref="users({userId: user.userId})"><li ng-repeat="reviews in data.results">{{user.name}}<span>{{user.localPull}}</span><span>{{review.text}}</span><span>{{review.score}}</span></li>
   </ul>
 </div>
