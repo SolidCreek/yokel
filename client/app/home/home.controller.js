@@ -9,10 +9,9 @@ angular.module('yokelApp')
     navigator.geolocation.watchPosition(function(position){
       $scope.searchNearby([position.coords.latitude, position.coords.longitude])
        .then(function(businesses){
-          console.log(position.coords.latitude, position.coords.longitude)
           $scope.data = businesses.data;
-          console.log($scope.data)
           $scope.markers = businesses.data;
+          console.log($scope.markers)
         });
     })
     $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
