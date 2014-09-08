@@ -12,14 +12,14 @@ var request = require('request');
 //fetch score and reviews from DB
 var addDatabase = function(place){
   //look up place: create if non-existent
-  place.score = Place.findScore({place_id: place.place_id});
-  place.reviews = Place.findRelated({place_id: place.place_id});
+  place.score = Place.findScore(place);
+  place.reviews = Place.findRelated(place);
   return Promise.props(place);
 };
 
 //google places api call here!!
 var apiRequest = function(req, res){
-  request('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + req.param("businesseId") + '&key='+ config.googleAPIKey, function (error, response, body) {
+  request('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + req.param("businessId") + '&key='+ config.googleAPIKey, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var place = JSON.parse(body).result;
       addDatabase(place)
@@ -49,7 +49,7 @@ var apiRequest = function(req, res){
 exports.index = function(req, res){
   if(config.googleAPIKey){
     //we expect in a google places_id in req data
-    if(req.param("businesseId")){
+    if(req.param("businessId")){
       apiRequest(req, res);
     } else {
       res.send(400);

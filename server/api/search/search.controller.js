@@ -28,7 +28,7 @@ var Promise = require('bluebird');
 //helper function to look up place and insert score
 var addDatabase = function(place){
   //look up place: create if non-existent
-  place.score = Place.findScore(place);
+  place.score = Place.findScore({place_id: place.place_id});
   return Promise.props(place);
 };
 //adds all scores for the list of places
@@ -54,7 +54,7 @@ var findBest = function(placesWithScores){
   return placesWithScores.splice(0, 10);
 }
 var apiRequest = function(req, res){
-  request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.param("lat") + ',' + req.param("lon") +'&radius=3200&types=food&key=' + config.googleAPIKey , function (error, response, body) {
+  request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.param("lat") + ',' + req.param("lon") +'&keyword=' + req.param("searchQuery") + '&radius=40400&types=food&key=' + config.googleAPIKey, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var places = JSON.parse(body).results
       addScores(places)
@@ -71,7 +71,7 @@ var apiRequest = function(req, res){
 exports.index = function(req, res) {
   if(config.googleAPIKey){
     //we expect in a google places_id in req data
-    if(req.param("lat") && req.param("lat")){
+    if(req.param("lat") && req.param("lat") && req.param("searchQuery")){
         apiRequest(req, res);
       } else {
         res.send(400);
