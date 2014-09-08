@@ -8,7 +8,7 @@
 
   <div class="selection-panel">
     <ul>
-      <a  ng-repeat="business in data" ui-sref="business({placeId: business.placeId})"><li>{{business.name}}<span>{{business.score}}</span><span>{{business.distance}}mi</span></li>
+      <a  ng-repeat="business in data" ui-sref="business({place_id: business.place_id})"><li>{{business.name}}<span>{{business.score}}</span><span>{{business.distance}}mi</span><span>{{business.rating}}</span></li>
     </ul>
   </div>
 
