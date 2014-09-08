@@ -4,12 +4,12 @@
     <input class="input-bar" type="text" placeholder="Seach for local establishments!" ng-model="searchFilter"></input> 
   </form>
 
-    <google-map class="map-container" ng-controller="mapController" center="map.center" zoom="map.zoom" draggable="true"></google-map>
+    <google-map class="map-container" ng-controller="HomeController" center="map.center" zoom="map.zoom" draggable="true"></google-map>
 
   <div class="selection-panel">
     <div class="business-list">
       <ul>
-        <a class="business" ng-repeat="business in data" ui-sref="business({placeId: business.placeId})"><li>{{business.name}}<span>{{business.score}}</span><span>{{business.distance}}mi</span></li>
+        <a class="business" ng-repeat="business in data" ui-sref="business({placeId: business.placeId})"><li>{{business.name}}<span>{{business.score}}</span><span>{{business.distance}}mi</span><span>{{business.rating}}</span></li>
       </ul>
     </div>
   </div>

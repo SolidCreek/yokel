@@ -22,7 +22,7 @@ var User = function(node){
 User.createUniqueUser = function(data){
   return new Promise(function(resolve, reject){
     if(!data.facebookID || !data.name){
-      reject('Requires facebook ID and name parameters');
+      reject('Requires facebook ID and name parameters ' + data.facebookID + " " +  data.name);
     }
 
     var query = [
@@ -101,11 +101,11 @@ var chooseTypes = function(relationshipType){
   if(relationshipType === 'FOLLOWS'){
     idType = 'facebookID';
     thingType = 'User';
-  } else if(relationshipType === 'HAS'){
+  } else if(relationshipType === 'WRITES'){
     idType = 'reviewID';
     thingType = 'Review';
   } else if(relationshipType === 'ISLOCAL'){
-    idType = 'placeID';
+    idType = 'place_id';
     thingType= 'Place';
   }
   return [thingType, idType];
@@ -210,5 +210,32 @@ User.findRelated = function(facebookID, relationshipType){
   });
 };
 
+//checks if a user is local to a particular business
+//requires facebookID and place_id
+User.isLocal = function(facebookID, place_id){
+  return new Promise(function(resolve, reject){
+
+    var query = [
+      'MATCH (user:User {facebookID: {facebookID}})-[r:ISLOCAL]->(place:Place {place_id: {place_id}})',
+      'RETURN r'
+    ].join('\n');
+
+    var params = {
+      'facebookID': facebookID,
+      'place_id': place_id
+    };
+    
+    db.query(query, params, function(err, results){
+      if(err){
+       reject(err); 
+      } else {
+        var parsedResults = _.map(results, function(item){
+          return item;
+        });
+        resolve(parsedResults);
+      }
+    });
+  });
+};
 
 module.exports = User;

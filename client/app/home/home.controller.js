@@ -1,56 +1,43 @@
 'use strict';
 
 angular.module('yokelApp')
-  .controller('HomeController', function($scope, $http, loadSearch){
-    $scope.map = {
-      center: {
-        latitude: 45,
-        longitude: -73
-      },
-      zoom: 8
-    };
+
+  .controller('HomeController', function($scope, $http, loadSearch){  
     $scope.data = {};
+    $scope.markers = [];
     $scope.searchNearby = loadSearch.searchNearby;
-    $scope.searchNearby()
-      .then(function(businesses){
-        $scope.data = businesses.data;
-      });
+    navigator.geolocation.watchPosition(function(position){
+      $scope.searchNearby([position.coords.latitude, position.coords.longitude])
+       .then(function(businesses){
+          console.log(position.coords.latitude, position.coords.longitude)
+          $scope.data = businesses.data;
+          console.log($scope.data)
+          $scope.markers = businesses.data;
+        });
+    })
+    $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
+    navigator.geolocation.getCurrentPosition(function(position){
+      $scope.map = {center: {latitude: position.coords.latitude, longitude: position.coords.longitude }, zoom: 14 };
+    })
+    $scope.options = {scrollwheel: false};
   })
 
-  .controller('mapController', function($scope){
-      $scope.map = {center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
-      $scope.options = {scrollwheel: false};
-  })
 
-  //needs to locate and search on init
-  .factory('locate', function(){
-    var locateUser = function(){
-      navigator.geolocation.watchPosition(function(position){
-        var userPosition = [position.coords.latitude, position.coords.longitude];
-        return userPosition;
-      });
-    };
-    return {
-      locateUser: locateUser
-    };
-  })
-
-  //searches for businesses on load
-  .factory('loadSearch', function($http, locate){
-    var searchNearby = function(){
-      var searchObj = {
-        position: locate.locateUser()
-      };
+  .factory('loadSearch', function($http){
+    var businessObj = {};
+    var searchNearby = function(searchObj){
       return $http({
         method: 'GET',
-        url: 'api/nearby',
+        url: 'api/nearby/'+searchObj[0]+'/'+searchObj[1],
         data: searchObj
       }).success(function(businesses){
-        return businesses;
+        businessObj.businesses = businesses
+        return businessObj.businesses;
       })
     };
     return {
-      searchNearby: searchNearby
+      searchNearby: searchNearby,
+      businessObj: businessObj
     };
   });
 

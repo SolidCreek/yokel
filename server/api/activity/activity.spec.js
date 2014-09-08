@@ -2,12 +2,13 @@
 
 var should = require('should');
 var app = require('../../app');
-var request = require('supertest');
+var supertest = require('supertest');
+var request = supertest(app);
 
 describe('GET /api/activity', function() {
-
+  var agent1 = supertest.agent();
   it('should respond with JSON array', function(done) {
-    request(app)
+    agent1
       .get('/api/activity')
       .expect(200)
       .expect('Content-Type', /json/)
@@ -18,7 +19,7 @@ describe('GET /api/activity', function() {
       });
   });
   it('should respond with JSON array of objects', function(done) {
-    request(app)
+    agent1
       .get('/api/activity')
       .expect(200)
       .expect('Content-Type', /json/)
@@ -29,7 +30,7 @@ describe('GET /api/activity', function() {
       });
   });
   it('should respond with JSON array of objects with a timeOfEvent field', function(done) {
-    request(app)
+    agent1
       .get('/api/activity')
       .expect(200)
       .expect('Content-Type', /json/)
@@ -42,7 +43,7 @@ describe('GET /api/activity', function() {
       });
   });
   it('should respond with JSON array of objects with a event field', function(done) {
-    request(app)
+    agent1
       .get('/api/activity')
       .expect(200)
       .expect('Content-Type', /json/)
@@ -55,7 +56,7 @@ describe('GET /api/activity', function() {
       });
   });
   it('should respond with JSON array of objects with a value field', function(done) {
-    request(app)
+    agent1
       .get('/api/activity')
       .expect(200)
       .expect('Content-Type', /json/)
@@ -68,7 +69,7 @@ describe('GET /api/activity', function() {
       });
   });
   it('should respond with JSON array of objects with a value field that is an object', function(done) {
-    request(app)
+    agent1
       .get('/api/activity')
       .expect(200)
       .expect('Content-Type', /json/)

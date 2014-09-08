@@ -4,127 +4,128 @@ var should = require('should');
 var app = require('../../app');
 var request = require('supertest');
 
-describe('GET /api/nearby', function() {
+describe('GET /api/place', function() {
 
-  it('should respond with JSON array', function(done) {
+  it('should respond with JSON object', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/place')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err) return done(err);
-        res.body.should.be.instanceof(Array);
+        res.body.should.be.instanceof(Object);
         done();
       });
   });
 
-  it('should respond with JSON array of objects', function(done) {
+  it('should respond with JSON object with a name field', function(done) {
     request(app)
-      .get('/api/nearby')
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .end(function(err, res) {
-        if (err) return done(err);
-        res.body[0].should.be.instanceof(Object);
-        done();
-      });
-  });
-
-  it('should respond with JSON array of 10 objects', function(done) {
-    request(app)
-      .get('/api/nearby')
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .end(function(err, res) {
-        if (err) return done(err);
-        res.body[0].should.be.instanceof(Object);
-        should.exist(res.body[9]);
-        res.body[9].should.be.instanceof(Object);
-        should.not.exist(res.body[10]);
-        done();
-      });
-  });
-
-  it('should respond with JSON array of objects with a name field', function(done) {
-    request(app)
-      .get('/api/nearby')
+      .get('/api/place')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err){
           return done(err);
         }
-        should.exist(res.body[0].name);
+        should.exist(res.body.name);
         done();
       });
   });
 
-  it('should respond with JSON array of objects with a place_id field', function(done) {
+  it('should respond with JSON object with a place_id field', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/place')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err){
           return done(err);
         }
-        should.exist(res.body[0].place_id);
+        should.exist(res.body.place_id);
         done();
       });
   });
 
-  it('should respond with JSON array of objects with a timeOpen field', function(done) {
+  it('should respond with JSON object with a timeOpen field', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/place')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err){
           return done(err);
         }
-        should.exist(res.body[0].timeOpen);
+        should.exist(res.body.timeOpen);
         done();
       });
   });
 
-  it('should respond with JSON array of objects with a timeClose field', function(done) {
+  it('should respond with JSON object with a timeClose field', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/place')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err){
           return done(err);
         }
-        should.exist(res.body[0].timeClose);
+        should.exist(res.body.timeClose);
         done();
       });
   });
   
-  it('should respond with JSON array of objects with a score field', function(done) {
+  it('should respond with JSON object with a score field', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/place')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err){
           return done(err);
         }
-        should.exist(res.body[0].score);
+        should.exist(res.body.score);
         done();
       });
   });
 
-  it('should respond with JSON array of objects with a location field', function(done) {
+  it('should respond with JSON object with a location field', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/place')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err){
           return done(err);
         }
-        should.exist(res.body[0].location);
+        should.exist(res.body.location);
+        done();
+      });
+  });
+
+   it('should respond with JSON object with a reviews field', function(done) {
+    request(app)
+      .get('/api/place')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(function(err, res) {
+        if (err){
+          return done(err);
+        }
+        should.exist(res.body.reviews);
+        done();
+      });
+  });
+
+  it('should have an array of reviews', function(done) {
+    request(app)
+      .get('/api/place')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(function(err, res) {
+        if (err){
+          return done(err);
+        }
+        res.body.reviews.should.be.instanceof(Array);
         done();
       });
   });

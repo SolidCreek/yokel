@@ -4,11 +4,11 @@ var should = require('should');
 var app = require('../../app');
 var request = require('supertest');
 
-describe('GET /api/nearby', function() {
+describe('GET /api/search', function() {
 
   it('should respond with JSON array', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/search')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
@@ -20,7 +20,7 @@ describe('GET /api/nearby', function() {
 
   it('should respond with JSON array of objects', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/search')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
@@ -32,7 +32,7 @@ describe('GET /api/nearby', function() {
 
   it('should respond with JSON array of 10 objects', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/search')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
@@ -47,7 +47,7 @@ describe('GET /api/nearby', function() {
 
   it('should respond with JSON array of objects with a name field', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/search')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
@@ -61,7 +61,7 @@ describe('GET /api/nearby', function() {
 
   it('should respond with JSON array of objects with a place_id field', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/search')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
@@ -75,7 +75,7 @@ describe('GET /api/nearby', function() {
 
   it('should respond with JSON array of objects with a timeOpen field', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/search')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
@@ -89,7 +89,7 @@ describe('GET /api/nearby', function() {
 
   it('should respond with JSON array of objects with a timeClose field', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/search')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
@@ -103,7 +103,7 @@ describe('GET /api/nearby', function() {
   
   it('should respond with JSON array of objects with a score field', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/search')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
@@ -117,7 +117,7 @@ describe('GET /api/nearby', function() {
 
   it('should respond with JSON array of objects with a location field', function(done) {
     request(app)
-      .get('/api/nearby')
+      .get('/api/search')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {

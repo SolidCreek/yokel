@@ -22,13 +22,13 @@ var Place = function(node){
 //returns a promise with a newly created Place object
 Place.createUniquePlace = function(data){
   return new Promise(function(resolve, reject){
-    if(!data.place_id){
-      reject('Requires place ID parameter');
+    if(!data.place_id && !data.name){
+      reject('Requires place ID && name parameter');
     }
 
     var query = [
       'MERGE (place:Place {place_id: {place_id}})',
-      'ON CREATE SET place.score = 50',
+      'ON CREATE SET place.score = 50, place.name = {name}',
       'RETURN place',
     ].join('\n');
 
@@ -69,6 +69,7 @@ Place.find = function(data){
   });
 };
 
+//gets the place score.  requires place_id as input
 Place.findScore = function(data){
   return new Promise(function(resolve, reject){
     Place.createUniquePlace(data)
@@ -76,10 +77,12 @@ Place.findScore = function(data){
       resolve(data.node._data.data.score);
     })
     .catch(function(err){
+      console.log("There was an error finding the score: " + err);
       resolve(new Error('Score could not be found'));
     });
   });
-}
+};
+
 
 //Deletes Place, requires place_id as input.
 Place.deletePlace = function(data){
@@ -197,6 +200,12 @@ Place.findRelated = function(place_id){
       }
     });
   });
+};
+
+//updates the local score based on the reviews a place has
+//requires an object with a place id
+Place.updateScore = function(data){
+  
 };
 
 
