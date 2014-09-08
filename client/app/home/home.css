@@ -7,8 +7,9 @@ search bar related styling
 **********************************/
 
 .search-bar{
-  margin-top: 15px;
-  margin-left: 450px;
+  margin-top: 10px;
+  margin-left: 40%;
+  padding-bottom: 10px;
 }
 
 .input-bar{
@@ -21,7 +22,7 @@ selection panel styling
 
 .selection-panel{
   position: absolute;
-  background-color: LimeGreen;
+  background-color: DarkGreen;
   height: 800px;
   width: 300px;
   top: 0px;
@@ -50,10 +51,10 @@ selection panel styling
 map styling
 **********************************/
 
-.angular-google-map-container{ 
-  height: 500px;
-  width: 500px;
-  left: 400px;
-  top: 50px;
+#map {
+  position: absolute;
+  height: 650px;
+  width:60%;
+  left: 30%;
 }
 
